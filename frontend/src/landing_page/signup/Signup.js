@@ -9,8 +9,8 @@ function Signup() {
     e.preventDefault();
 
     const endpoint = isSignup
-      ? "http://localhost:3002/api/signup"
-      : "http://localhost:3002/api/login";
+  ? `${process.env.REACT_APP_API_URL}/api/signup`
+  : `${process.env.REACT_APP_API_URL}/api/login`;
 
     try {
       const res = await fetch(endpoint, {
@@ -27,7 +27,7 @@ function Signup() {
         if (data.token) {
           localStorage.setItem("token", data.token);
           alert("Login successful!");
-          window.location.href = "http://localhost:3001"; // dashboard
+          window.location.href = "https://zerodha-dashboard.onrender.com"; // dashboard
         } else {
           alert(data.message || "Invalid credentials");
         }
