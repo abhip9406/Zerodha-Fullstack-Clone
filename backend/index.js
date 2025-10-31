@@ -19,8 +19,13 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
-const users = []; // temporary store (you can replace with MongoDB later)
+const users = [];
 const SECRET = "mysecretkey";
+
+// Root route for Render test
+app.get("/", (req, res) => {
+  res.send("Zerodha Backend is Live on Render!");
+});
 
 // SIGNUP route
 app.post("/api/signup", (req, res) => {
@@ -55,7 +60,6 @@ app.get("/api/dashboard", (req, res) => {
 });
 
 // HOLDINGS / POSITIONS / ORDERS
-
 app.get("/allHoldings", async (req, res) => {
   let allHoldings = await HoldingsModel.find({});
   res.json(allHoldings);
@@ -84,10 +88,9 @@ app.post("/newOrder", async (req, res) => {
 });
 
 // SERVER + DATABASE START
-
 app.listen(PORT, () => {
-  console.log(`✅ App Started on port ${PORT}`);
+  console.log(`App Started on port ${PORT}`);
   mongoose.connect(uri)
-    .then(() => console.log("✅ MongoDB Connected"))
-    .catch((err) => console.log("❌ MongoDB Error:", err));
+    .then(() => console.log("MongoDB Connected"))
+    .catch((err) => console.log("MongoDB Error:", err));
 });
