@@ -6,24 +6,24 @@ function App() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
-      window.location.href = "http://localhost:3000";
+      window.location.href = "https://zerodha-frontend.onrender.com";
       return;
     }
 
-    fetch("http://localhost:3002/api/dashboard", {
+    fetch("https://zerodha-backend.onrender.com/api/dashboard", {
       headers: { Authorization: `Bearer ${token}` },
     })
-      .then(res => res.json())
-      .then(data => {
+      .then((res) => res.json())
+      .then((data) => {
         if (data.message) setMessage(data.message);
-        else window.location.href = "http://localhost:3000";
+        else window.location.href = "https://zerodha-frontend.onrender.com";
       })
-      .catch(() => window.location.href = "http://localhost:3000");
+      .catch(() => window.location.href = "https://zerodha-frontend.onrender.com");
   }, []);
 
   const logout = () => {
     localStorage.removeItem("token");
-    window.location.href = "http://localhost:3000";
+    window.location.href = "https://zerodha-frontend.onrender.com";
   };
 
   return (
