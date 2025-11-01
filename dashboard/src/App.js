@@ -10,7 +10,7 @@ function App() {
       return;
     }
 
-    fetch("https://zerodha-backend.onrender.com/api/dashboard", {
+    fetch("https://zerodha-fullstack-clone-34y6.onrender.com/", {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((res) => res.json())
