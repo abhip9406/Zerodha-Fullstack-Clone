@@ -8,7 +8,7 @@ const Orders = () => {
   // Fetch all orders when component loads
   useEffect(() => {
     axios
-      .get("https://zerodha-fullstack-clone-34y6.onrender.com/")
+      .get("https://zerodha-fullstack-clone-34y6.onrender.com/allOrders")
       .then((res) => setOrders(res.data))
       .catch((err) => console.error("Error fetching orders:", err));
   }, []);
