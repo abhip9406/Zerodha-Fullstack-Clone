@@ -1,17 +1,17 @@
 .container {
-    --radius: 4px;
-    width: 10%;
-    height: 63%;
-    background: rgb(245, 245, 245);
-    position: absolute;
-    bottom: 0;
-    left: 35%;
-    cursor: move;
-    box-sizing: border-box;
-    z-index: 100;
-    border-radius: var(--radius);
-    border: 1px solid rgb(238, 238, 238);
-  }
+  --radius: 4px;
+  width: 40%;
+  height: 63%;
+  background: rgb(245, 245, 245);
+  position: absolute;
+  bottom: 0;
+  left: 35%;
+  cursor: move;
+  box-sizing: border-box;
+  z-index: 100;
+  border-radius: var(--radius);
+  border: 1px solid rgb(238, 238, 238);
+}
 
 .dragging {
   opacity: 0;
@@ -101,12 +101,11 @@
 
 .inputs {
   display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
+  align-items: center;
+  justify-content: space-between;
   margin-top: 16px;
   margin-bottom: 16px;
 }
-
 
 .inputs fieldset {
   max-width: 120px;
@@ -156,8 +155,8 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-  top: 0;
-  padding: 20px;
+  top: 10%;
+  padding: 0 20px;
 }
 
 .buttons span {

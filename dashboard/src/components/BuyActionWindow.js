@@ -34,6 +34,8 @@ const BuyActionWindow = ({ uid }) => {
       }, 500);
     } catch (error) {
       console.error("Error placing order:", error);
+      alert("Order place successfully!");
+
     } finally {
       setLoading(false);
     }
