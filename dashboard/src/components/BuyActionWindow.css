@@ -1,16 +1,18 @@
 .container {
-  --radius: 4px;
-  width: 20%;
-  height: 63%;
-  background: rgb(245, 245, 245);
-  position: absolute;
-  bottom: 0;
-  left: 35%;
-  cursor: move;
+  --radius: 8px;
+  width: 28%;
+  height: auto;       
+  background: #f5f5f5;
+  position: fixed;    
+  top: 20%;            
+  left: 50%;
+  transform: translateX(-50%);
   box-sizing: border-box;
   z-index: 100;
   border-radius: var(--radius);
-  border: 1px solid rgb(238, 238, 238);
+  border: 1px solid #eaeaea;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  padding-bottom: 16px;
 }
 
 .dragging {
