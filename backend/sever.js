@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const app = express();
+const orders = [];
 
 app.use(cors({
   origin: ["http://localhost:3000", "http://localhost:3001"],
@@ -29,7 +30,7 @@ app.post("/api/signup", (req, res) => {
 
 // LOGIN
 app.post("/api/login", (req, res) => {
-  console.log("🟢 Login request received:", req.body);
+  console.log("Login request received:", req.body);
   const { email, password } = req.body;
   const user = users.find(u => u.email === email && u.password === password);
   if (!user) return res.status(401).json({ message: "Invalid credentials" });
@@ -50,4 +51,15 @@ app.get("/api/dashboard", (req, res) => {
   });
 });
 
-app.listen(5000, () => console.log("✅ Backend running on port 5000"));
+app.post("/newOrder", (req, res) => {
+  const { name, qty, price, mode } = req.body;
+  orders.push({ name, qty, price, mode });
+  res.json({ message: "Order placed successfully" });
+});
+
+app.get("/allOrders", (req, res) => {
+  res.json(orders);
+});
+
+
+app.listen(5000, () => console.log("Backend running on port 5000"));
