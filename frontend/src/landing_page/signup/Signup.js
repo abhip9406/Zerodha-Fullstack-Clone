@@ -9,8 +9,8 @@ function Signup() {
     e.preventDefault();
 
     const endpoint = isSignup
-  ? `${process.env.REACT_APP_API_URL}/api/signup`
-  : `${process.env.REACT_APP_API_URL}/api/login`;
+  ? 'https://zerodha-fullstack-clone-34y6.onrender.com/api/signup'
+  : 'https://zerodha-fullstack-clone-34y6.onrender.com/api/login';
 
     try {
       const res = await fetch(endpoint, {
