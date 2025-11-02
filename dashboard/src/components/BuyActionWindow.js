@@ -1,25 +1,43 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-
 import axios from "axios";
-
 import GeneralContext from "./GeneralContext";
-
 import "./BuyActionWindow.css";
 
 const BuyActionWindow = ({ uid }) => {
   const [stockQuantity, setStockQuantity] = useState(1);
   const [stockPrice, setStockPrice] = useState(0.0);
+  const [loading, setLoading] = useState(false);
 
-  const handleBuyClick = () => {
-    axios.post("https://zerodha-fullstack-clone-34y6.onrender.com/newOrder", {
-      name: uid,
-      qty: stockQuantity,
-      price: stockPrice,
-      mode: "BUY",
-    });
+  const handleBuyClick = async () => {
+    try {
+      setLoading(true);
 
-    GeneralContext.closeBuyWindow();
+      const response = await axios.post(
+        "https://zerodha-fullstack-clone-34y6.onrender.com/newOrder",
+        {
+          name: uid,
+          qty: stockQuantity,
+          price: stockPrice,
+          mode: "BUY",
+        }
+      );
+
+      console.log("Order placed successfully:", response.data);
+
+      // Close the buy window
+      GeneralContext.closeBuyWindow();
+
+      // Refresh page so Orders list updates
+      setTimeout(() => {
+        window.location.reload();
+      }, 500);
+    } catch (error) {
+      console.error("❌ Error placing order:", error);
+      alert("Failed to place order. Please try again!");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleCancelClick = () => {
@@ -38,6 +56,7 @@ const BuyActionWindow = ({ uid }) => {
               id="qty"
               onChange={(e) => setStockQuantity(e.target.value)}
               value={stockQuantity}
+              min="1"
             />
           </fieldset>
           <fieldset>
@@ -49,6 +68,7 @@ const BuyActionWindow = ({ uid }) => {
               step="0.05"
               onChange={(e) => setStockPrice(e.target.value)}
               value={stockPrice}
+              min="0"
             />
           </fieldset>
         </div>
@@ -57,8 +77,12 @@ const BuyActionWindow = ({ uid }) => {
       <div className="buttons">
         <span>Margin required ₹140.65</span>
         <div>
-          <Link className="btn btn-blue" onClick={handleBuyClick}>
-            Buy
+          <Link
+            className="btn btn-blue"
+            onClick={handleBuyClick}
+            style={{ pointerEvents: loading ? "none" : "auto", opacity: loading ? 0.6 : 1 }}
+          >
+            {loading ? "Processing..." : "Buy"}
           </Link>
           <Link to="" className="btn btn-grey" onClick={handleCancelClick}>
             Cancel
