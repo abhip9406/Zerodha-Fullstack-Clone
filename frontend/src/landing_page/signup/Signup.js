@@ -27,7 +27,7 @@ function Signup() {
         if (data.token) {
           localStorage.setItem("token", data.token);
           alert("Login successful!");
-          window.location.href = "https://zerodha-dashboard.onrender.com"; // dashboard
+          window.location.href = "https://zerodha-dashboard-v60e.onrender.com"; // dashboard
         } else {
           alert(data.message || "Invalid credentials");
         }
