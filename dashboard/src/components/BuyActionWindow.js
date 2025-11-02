@@ -33,7 +33,7 @@ const BuyActionWindow = ({ uid }) => {
         window.location.reload();
       }, 500);
     } catch (error) {
-      console.error("❌ Error placing order:", error);
+      console.error("Error placing order:", error);
       alert("Failed to place order. Please try again!");
     } finally {
       setLoading(false);
